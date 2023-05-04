@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import useCoordinates from "./hooks/useCoordinates";
+import WeatherCard from "./components/WeatherCard";
+import LocationCard from "./components/LocationCard";
 import { Coordinate, Value } from "./types";
 import "./styles.css";
 
@@ -33,6 +35,13 @@ export default function App() {
 
   return (
     <div className="App" data-testid="container"><h1>Weather App</h1>
+      {shouldDisplayWeather ? (<>
+        <LocationCard coordinate={coordinate} /> 
+      {result?.map((value) => {
+          return (
+            <WeatherCard value={value} key={value.id} />
+          );
+        })}</>) : <p>Checking the weather in your location, hang on....</p>}
     </div>
   );
 }
